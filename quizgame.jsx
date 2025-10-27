@@ -8,12 +8,14 @@ const QuizGame = () => {
   const [feedback, setFeedback] = useState(null);
   const [questionSet, setQuestionSet] = useState(0);
 
-  // Quiz data structure
+  // Quiz data structure with difficulty levels
+  // d1 = most difficult, d5 = least difficult
   const quizData = [
     // First set of questions
     [
       {
         question: "What is the capital of France?",
+        difficulty: "d4",
         answers: [
           { text: "London", correct: false },
           { text: "Paris", correct: true },
@@ -22,6 +24,7 @@ const QuizGame = () => {
       },
       {
         question: "What is 5 + 7?",
+        difficulty: "d5",
         answers: [
           { text: "11", correct: false },
           { text: "12", correct: true },
@@ -30,6 +33,7 @@ const QuizGame = () => {
       },
       {
         question: "Which planet is known as the Red Planet?",
+        difficulty: "d3",
         answers: [
           { text: "Venus", correct: false },
           { text: "Jupiter", correct: false },
@@ -41,6 +45,7 @@ const QuizGame = () => {
     [
       {
         question: "What is the largest ocean on Earth?",
+        difficulty: "d4",
         answers: [
           { text: "Atlantic Ocean", correct: false },
           { text: "Pacific Ocean", correct: true },
@@ -49,6 +54,7 @@ const QuizGame = () => {
       },
       {
         question: "How many continents are there?",
+        difficulty: "d3",
         answers: [
           { text: "5", correct: false },
           { text: "6", correct: false },
@@ -57,6 +63,7 @@ const QuizGame = () => {
       },
       {
         question: "What is the smallest prime number?",
+        difficulty: "d2",
         answers: [
           { text: "1", correct: false },
           { text: "2", correct: true },
@@ -68,6 +75,7 @@ const QuizGame = () => {
     [
       {
         question: "What year did World War II end?",
+        difficulty: "d3",
         answers: [
           { text: "1945", correct: true },
           { text: "1944", correct: false },
@@ -76,6 +84,7 @@ const QuizGame = () => {
       },
       {
         question: "What is the chemical symbol for gold?",
+        difficulty: "d2",
         answers: [
           { text: "Go", correct: false },
           { text: "Au", correct: true },
@@ -84,6 +93,7 @@ const QuizGame = () => {
       },
       {
         question: "Which animal is the fastest land animal?",
+        difficulty: "d3",
         answers: [
           { text: "Lion", correct: false },
           { text: "Cheetah", correct: true },
@@ -170,7 +180,12 @@ const QuizGame = () => {
                 onClick={() => handleQuestionClick(index)}
                 className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white p-6 rounded-xl shadow-lg transform transition-all hover:scale-105 hover:shadow-xl"
               >
-                <p className="text-xl font-semibold">{item.question}</p>
+                <div className="flex items-center justify-between">
+                  <p className="text-xl font-semibold flex-grow">{item.question}</p>
+                  <span className="ml-4 px-3 py-1 bg-white bg-opacity-30 rounded-full text-sm font-bold">
+                    {item.difficulty.toUpperCase()}
+                  </span>
+                </div>
               </button>
             ))
           ) : (

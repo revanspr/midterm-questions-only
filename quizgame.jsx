@@ -199,9 +199,6 @@ const QuizGame = () => {
           )}
         </div>
 
-        <div className="mt-6 text-center text-gray-600 text-sm">
-          {gameState === 'questions' ? 'Click on a question to begin!' : 'Select the correct answer!'}
-        </div>
       </div>
     </div>
   );

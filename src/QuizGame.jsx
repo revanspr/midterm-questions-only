@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { CheckCircle, XCircle } from 'lucide-react';
+import quizQuestionsData from '../Q&A.json';
 
 const QuizGame = () => {
   const [gameState, setGameState] = useState('questions'); // 'questions' or 'answers'
@@ -8,90 +9,12 @@ const QuizGame = () => {
   const [feedback, setFeedback] = useState(null);
   const [questionSet, setQuestionSet] = useState(0);
 
-  // Quiz data structure
-  const quizData = [
-    // First set of questions
-    [
-      {
-        question: "What is the capital of France?",
-        answers: [
-          { text: "London", correct: false },
-          { text: "Paris", correct: true },
-          { text: "Berlin", correct: false }
-        ]
-      },
-      {
-        question: "What is 5 + 7?",
-        answers: [
-          { text: "11", correct: false },
-          { text: "12", correct: true },
-          { text: "13", correct: false }
-        ]
-      },
-      {
-        question: "Which planet is known as the Red Planet?",
-        answers: [
-          { text: "Venus", correct: false },
-          { text: "Jupiter", correct: false },
-          { text: "Mars", correct: true }
-        ]
-      }
-    ],
-    // Second set of questions
-    [
-      {
-        question: "What is the largest ocean on Earth?",
-        answers: [
-          { text: "Atlantic Ocean", correct: false },
-          { text: "Pacific Ocean", correct: true },
-          { text: "Indian Ocean", correct: false }
-        ]
-      },
-      {
-        question: "How many continents are there?",
-        answers: [
-          { text: "5", correct: false },
-          { text: "6", correct: false },
-          { text: "7", correct: true }
-        ]
-      },
-      {
-        question: "What is the smallest prime number?",
-        answers: [
-          { text: "1", correct: false },
-          { text: "2", correct: true },
-          { text: "3", correct: false }
-        ]
-      }
-    ],
-    // Third set of questions
-    [
-      {
-        question: "What year did World War II end?",
-        answers: [
-          { text: "1945", correct: true },
-          { text: "1944", correct: false },
-          { text: "1946", correct: false }
-        ]
-      },
-      {
-        question: "What is the chemical symbol for gold?",
-        answers: [
-          { text: "Go", correct: false },
-          { text: "Au", correct: true },
-          { text: "Gd", correct: false }
-        ]
-      },
-      {
-        question: "Which animal is the fastest land animal?",
-        answers: [
-          { text: "Lion", correct: false },
-          { text: "Cheetah", correct: true },
-          { text: "Leopard", correct: false }
-        ]
-      }
-    ]
-  ];
+  // Split questions into sets of 3
+  const questionsPerSet = 3;
+  const quizData = [];
+  for (let i = 0; i < quizQuestionsData.length; i += questionsPerSet) {
+    quizData.push(quizQuestionsData.slice(i, i + questionsPerSet));
+  }
 
   const currentQuestions = quizData[questionSet] || quizData[0];
 
